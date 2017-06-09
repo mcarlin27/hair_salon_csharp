@@ -21,10 +21,10 @@
     </ol>
   }
 
-  <form action='/salon/edit/@Model["salon"].GetId()' method="get">
+  <form action='/salon/@Model["salon"].GetId()/edit' method="get">
       <input type="hidden" name="salon-edit" id="salon-edit" value="salon-edit"><button type="submit">Edit this Salon</button>
   </form>
-  <form action='/salon/delete/@Model["salon"].GetId()' method="get">
+  <form action='/salon/@Model["salon"].GetId()/delete' method="get">
       <input type="hidden" name="salon-delete" id="salon-delete" value="salon-delete"><button type="submit">Delete this Salon</button>
   </form>
   <p><a href="/stylists/new">Add a new stylist</a></p>

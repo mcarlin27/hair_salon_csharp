@@ -8,7 +8,7 @@
     <h1>Edit Salon</h1>
     <hr />
     <h3>@Model["salon"].GetName()</h3>
-    <form action='/salon/edit/@Model["salon"].GetId()' method="post">
+    <form action='/salon/@Model["salon"].GetId()/edit' method="post">
       <input type="hidden" name="_method" value="PATCH">
       <input name="salon-id" type="hidden" value='@Model["salon"].GetId()'>
       <label for="salon-name">Salon Name</label>
@@ -26,7 +26,7 @@
     <h1>Edit Stylist</h1>
     <hr />
     <h2>@Model["stylist"].GetName()</h2>
-    <form action='/stylist/edit/@Model["stylist"].GetId()' method="post">
+    <form action='/stylist/@Model["stylist"].GetId()/edit' method="post">
       <input type="hidden" name="_method" value="PATCH">
       <input name="stylist-id" type="hidden" value='@Model["stylist"].GetId()'>
 
@@ -47,7 +47,7 @@
     <h1>Edit Client</h1>
     <hr />
     <h2>@Model["client"].GetName()</h2>
-    <form action='/client/edit/@Model["client"].GetId()' method="post">
+    <form action='/client/@Model["client"].GetId()/edit/' method="post">
       <input type="hidden" name="_method" value="PATCH">
       <input name="client-id" type="hidden" value='@Model["client"].GetId()'>
       <label for="client-name">Client Name</label>

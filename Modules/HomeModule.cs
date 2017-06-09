@@ -71,7 +71,7 @@ namespace HairSalon
         return View["salon.cshtml", model];
       }; //retrieves individual salon pages
 
-      Get["/salon/edit/{id}"] = parameters => {
+      Get["/salon/{id}/edit"] = parameters => {
         Dictionary<string, object> model = new Dictionary<string, object>{};
         Salon SelectedSalon = Salon.Find(parameters.id);
         string salonEdit = Request.Query["salon-edit"];
@@ -80,7 +80,7 @@ namespace HairSalon
         return View["edit.cshtml", model];
       }; //edit individual salon
 
-      Patch["/salon/edit/{id}"] = parameters => {
+      Patch["/salon/{id}/edit"] = parameters => {
         Dictionary<string, object> model = new Dictionary<string, object>();
         Salon SelectedSalon = Salon.Find(parameters.id);
         SelectedSalon.Update(Request.Form["salon-name"], Request.Form["salon-about"]);
@@ -89,6 +89,22 @@ namespace HairSalon
         model.Add("stylists", SalonStylists);
         return View["salon.cshtml", model];
       }; //returns edited salon page
+
+      Get["salon/{id}/delete"] = parameters => {
+        Dictionary<string, object> model = new Dictionary<string, object>{};
+        Salon SelectedSalon = Salon.Find(parameters.id);
+        string salonDelete = Request.Query["salon-delete"];
+        model.Add("form-type", salonDelete);
+        model.Add("salon", SelectedSalon);
+        return View["delete.cshtml", model];
+      }; //delete individual salon
+
+      Delete["salon/{id}/delete"] = parameters => {
+        Salon SelectedSalon = Salon.Find(parameters.id);
+        SelectedSalon.Delete();
+        List<Salon> allSalons = Salon.GetAll();
+        return View["salons.cshtml", allSalons];
+      }; //returns confirmation of deleted salon
 
 
     }
