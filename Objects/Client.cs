@@ -78,7 +78,7 @@ namespace HairSalon
       }
     }
 
-    public void Update(string newName)
+    public void UpdateString(string newName)
     { //Update method for strings
       SqlConnection conn = DB.Connection();
       conn.Open();
@@ -110,7 +110,7 @@ namespace HairSalon
       }
     }
 
-    public void Update(int newStylistId)
+    public void UpdateInt(int newStylistId)
     { //Update method for integers
       SqlConnection conn = DB.Connection();
       conn.Open();

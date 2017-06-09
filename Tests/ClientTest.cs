@@ -83,19 +83,19 @@ namespace HairSalon
       Assert.Equal(testClient, foundClient);
     }
     [Fact]
-    public void Test_Update_ReturnsTrueIfClientInfoIsTheSame()
+    public void Test_UpdateString_ReturnsTrueIfClientInfoIsTheSame()
     {
       //Arrange
       Client firstTestClient = new Client("Vin Diesel", 3);
       firstTestClient.Save();
       Client secondTestClient = new Client("Dwayne Johnson", 3, firstTestClient.GetId());
       //Act
-      secondTestClient.Update("Vin Diesel");
+      secondTestClient.UpdateString("Vin Diesel");
       //Assert
       Assert.Equal(firstTestClient, secondTestClient);
     }
     [Fact]
-    public void Test_Update_ReturnsTrueIfStylistIdsAreTheSame()
+    public void Test_UpdateInt_ReturnsTrueIfStylistIdsAreTheSame()
     {
       //Arrange
       Stylist newStylist = new Stylist("Harry Cutter", "a great stylist", 3);
@@ -104,7 +104,7 @@ namespace HairSalon
       firstTestClient.Save();
       Client secondTestClient = new Client("Vin Diesel", 1, firstTestClient.GetId());
       //Act
-      secondTestClient.Update(firstTestClient.GetStylistId());
+      secondTestClient.UpdateInt(firstTestClient.GetStylistId());
 
       //Assert
       Assert.Equal(firstTestClient, secondTestClient);

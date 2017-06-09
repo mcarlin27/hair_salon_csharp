@@ -169,7 +169,7 @@ namespace HairSalon
       Patch["/client/{id}/edit"] = parameters => {
         Dictionary<string, object> model = new Dictionary<string, object>();
         Client SelectedClient = Client.Find(parameters.id);
-        SelectedClient.Update(Request.Form["client-name"]);
+        SelectedClient.UpdateString(Request.Form["client-name"]);
         model.Add("client", SelectedClient);
         return View["client.cshtml", model];
       }; //returns edited client page
