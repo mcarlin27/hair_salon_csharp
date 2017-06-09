@@ -1,0 +1,20 @@
+@{
+  Layout="Shared/_Layout";
+}
+
+<div class="container">
+  <h1>Add a new stylist</h1>
+  <form action="/stylists/new" method="post">
+    <label for="stylist-name">Stylist Name:</label>
+    <input id="stylist-name" name="stylist-name" type="text">
+    <label for="stylist-bio">Stylist Bio:</label>
+    <input id="stylist-bio" name="stylist-bio" type="text">
+    <select name="salon-id">
+      @foreach (var salon in Model)
+      {
+        <option value="@salon.GetId()">@salon.GetName()</option>
+      }
+    </select>
+    <button type="submit">Add new stylist</button>
+  </form>
+</div>
