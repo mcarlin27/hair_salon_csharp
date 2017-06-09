@@ -48,7 +48,7 @@ namespace HairSalon
       //Arrange
       Salon firstTestSalon = new Salon("British Hairways", "a great salon");
       firstTestSalon.Save();
-      Salon secondTestSalon = new Salon("The Second Combing", "a wonderful stylist");
+      Salon secondTestSalon = new Salon("The Second Combing", "a wonderful salon");
       secondTestSalon.Save();
       //Act
       List<Salon> result = Salon.GetAll();
@@ -79,6 +79,18 @@ namespace HairSalon
       Salon foundSalon = Salon.Find(testSalon.GetId());
       //Assert
       Assert.Equal(testSalon, foundSalon);
+    }
+    [Fact]
+    public void Test_Update_ReturnsTrueIfSalonInfoIsTheSame()
+    {
+      //Arrange
+      Salon firstTestSalon = new Salon("British Hairways", "a great salon");
+      firstTestSalon.Save();
+      Salon secondTestSalon = new Salon("The Second Combing", "a wonderful salon", firstTestSalon.GetId());
+      //Act
+      secondTestSalon.Update("British Hairways", "a great salon");
+      //Assert
+      Assert.Equal(firstTestSalon, secondTestSalon);
     }
     public void Dispose()
     {
