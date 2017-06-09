@@ -109,7 +109,6 @@ namespace HairSalon
       //Assert
       Assert.Equal(resultList, expectedList);
     }
-
     public void Dispose()
     {
       Stylist.DeleteAll();

@@ -26,14 +26,28 @@ namespace HairSalon
     {
       //Arrange, Act
       Stylist newStylist = new Stylist("Harry Cutter", "a great stylist");
+      newStylist.Save();
       Client firstClient = new Client("Vin Diesel", newStylist.GetId());
       Client secondClient = new Client("Vin Diesel", newStylist.GetId());
       //Assert
       Assert.Equal(firstClient, secondClient);
     }
+    [Fact]
+    public void Test_Save_SavesClientToDatabase()
+    {
+      //Arrange
+      Client testClient = new Client("Vin Diesel", 3);
+      testClient.Save();
+      //Act
+      List<Client> result = Client.GetAll();
+      List<Client> expectedResult = new List<Client>{testClient};
+      //Assert
+      Assert.Equal(result, expectedResult);
+    }
     public void Dispose()
     {
       Client.DeleteAll();
+      Stylist.DeleteAll();
     }
   }
 }
