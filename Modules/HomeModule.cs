@@ -150,6 +150,13 @@ namespace HairSalon
         return View["stylists.cshtml", allStylists];
       }; //returns confirmation of deleted stylist
 
+      Get["/clients/{id}"] = parameters => {
+        Client SelectedClient = Client.Find(parameters.id);
+        Dictionary<string, object> model = new Dictionary<string, object>();
+        model.Add("client", SelectedClient);
+        return View["client.cshtml", model];
+      }; //retrieves individual client pages
+
 
     }
   }

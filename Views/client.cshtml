@@ -1,0 +1,15 @@
+@{
+  Layout="Shared/_Layout";
+}
+
+<div class="container">
+  <h1>@Model["client"].GetName()</h1>
+
+  <form action='/client/@Model["client"].GetId()/edit' method="get">
+      <input type="hidden" name="client-edit" id="client-edit" value="client-edit"><button type="submit">Edit this Client</button>
+  </form>
+  <form action='/client/@Model["client"].GetId()/delete' method="get">
+      <input type="hidden" name="client-delete" id="client-delete" value="client-delete"><button type="submit">Delete this Client</button>
+  </form>
+  <p><a href="/">Return Home</a></p>
+</div>
