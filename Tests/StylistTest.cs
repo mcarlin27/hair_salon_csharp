@@ -37,14 +37,26 @@ namespace HairSalon
       //Arrange
       Stylist testStylist = new Stylist("Harry Cutter", "a great stylist");
       testStylist.Save();
-
       //Act
       List<Stylist> result = Stylist.GetAll();
       List<Stylist> expectedResult = new List<Stylist>{testStylist};
-
       //Assert
       Assert.Equal(result, expectedResult);
     }
+    [Fact]
+    public void Test_Save_AssignsIdToStylistInDatabase()
+    {
+      //Arrange
+      Stylist testStylist = new Stylist("Harry Cutter", "a great stylist");
+      testStylist.Save();
+      //Act
+      Stylist savedStylist = Stylist.GetAll()[0];
+      int testId = testStylist.GetId();
+      int expectedId = savedStylist.GetId();
+      //Assert
+      Assert.Equal(testId, expectedId);
+    }
+
     public void Dispose()
     {
       Stylist.DeleteAll();
