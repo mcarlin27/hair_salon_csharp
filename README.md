@@ -11,15 +11,15 @@ A website created with C# and HTML where a ...
 ### Specs
 | Behavior | Example Input | Example Output | Reasoning for Spec |
 | :-------------     | :------------- | :------------- | :------------- |
-| **WISH LIST: Save one hair salon to database** | "British Hairways" | "British Hairways" | Simplest possible input for Salon object. |
-| **WISH LIST: Save multiple salons to database** | "British Hairways" "The Second Combing" | "British Hairways", "The Second Combing" | Database should save multiple instances of an object. |
-| **WISH LIST: User can query list of salons** | "Query: All Salons" | "British Hairways, The Second Combing" | Uses a GetAll() method to query database. |
-| **WISH LIST: User can view a specific salon** | "British Hairways" "/salons/{id}" | "British Hairways" | Uses Find() method to identify individual salon by id and return full database info for salon. |
+| **Save one hair salon to database** | "British Hairways" | "British Hairways" | Simplest possible input for Salon object. |
+| **Save multiple salons to database** | "British Hairways" "The Second Combing" | "British Hairways", "The Second Combing" | Database should save multiple instances of an object. |
+| **User can query list of salons** | "Query: All Salons" | "British Hairways, The Second Combing" | Uses a GetAll() method to query database. |
+| **User can view a specific salon** | "British Hairways" "/salons/{id}" | "British Hairways" | Uses Find() method to identify individual salon by id and return full database info for salon. |
 | **Save one stylist to database** | "Harry Cutter" | "Harry Cutter" | Simplest possible input for Stylist object. |
-| **WISH LIST: Links Stylist to specific Salon** | "Harry Cutter, British Hairways" | "British Hairways: Harry Cutter" | Creates one-to-many relationship between salons and stylists; stylists are inputted with SalonId. |
+| **Links Stylist to specific Salon** | "Harry Cutter, British Hairways" | "British Hairways: Harry Cutter" | Creates one-to-many relationship between salons and stylists; stylists are inputted with SalonId. |
 | **Save multiple stylists to database** | "Harry Cutter" "Dwayne Johnson" | "Harry Cutter", "Dwayne Johnson" | Database should save multiple instances of an object. |
 | **User can query list of stylists** | "Query: All Stylists" | "Harry Cutter, Dwayne Johnson" | Uses a GetAll() method to query database. |
-| **WISH LIST: User can query list of stylists by salon** | "Query: All Stylists at The Second Combing" | "Harry Cutter, Bruce Willis" | Uses a GetStylists() method to query stylist database by SalonId. |
+| **User can query list of stylists by salon** | "Query: All Stylists at The Second Combing" | "Harry Cutter, Bruce Willis" | Uses a GetStylists() method to query stylist database by SalonId. |
 | **User can view a specific stylist** | "Harry Cutter" "/stylists/{id}" | "Harry Cutter" | Uses Find() method to identify individual stylists by id and return full database info for stylist. |
 | **User can edit a specific stylist** | "Edit: Harry Cutter" "/stylists/{id}/edit" | "Harry Cutter" --> "Carry Hutter" | Uses Update() method to edit individual stylist's database entry; stylist identified by id. |
 | **User can delete a specific stylist** | "Delete: Harry Cutter" "/stylists/{id}/delete" | "Stylist Deleted!" | Uses Delete() method to delete individual stylist's database entry; stylist identified by id. |
