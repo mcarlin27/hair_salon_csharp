@@ -82,6 +82,18 @@ namespace HairSalon
       //Assert
       Assert.Equal(testClient, foundClient);
     }
+    [Fact]
+    public void Test_Update_ReturnsTrueIfClientInfoIsTheSame()
+    {
+      //Arrange
+      Client firstTestClient = new Client("Vin Diesel", 3);
+      firstTestClient.Save();
+      Client secondTestClient = new Client("Dwayne Johnson", 3, firstTestClient.GetId());
+      //Act
+      secondTestClient.Update("Vin Diesel");
+      //Assert
+      Assert.Equal(firstTestClient, secondTestClient);
+    }
     public void Dispose()
     {
       Client.DeleteAll();
