@@ -16,6 +16,19 @@ namespace HairSalon
       _name = Name;
       _bio = Bio;
     }
+    public int GetId()
+    {
+      return _id;
+    }
+    public string GetName()
+    {
+      return _name;
+    }
+    public string GetBio()
+    {
+      return _bio;
+    }
+
     public override bool Equals(System.Object otherStylist)
     {
       if (!(otherStylist is Stylist))
@@ -31,19 +44,7 @@ namespace HairSalon
         return (idEquality && nameEquality && bioEquality);
       }
     }
-    public int GetId()
-    {
-      return _id;
-    }
-    public string GetName()
-    {
-      return _name;
-    }
-    public string GetBio()
-    {
-      return _bio;
-    }
-
+    
     public void Save()
     {
       SqlConnection conn = DB.Connection();
