@@ -13,7 +13,6 @@ namespace HairSalon
     {
       DBConfiguration.ConnectionString = "Data Source=(localdb)\\mssqllocaldb;Initial Catalog=hair_salon_test;Integrated Security=SSPI;";
     }
-
     [Fact]
     public void Test_StylistDatabaseEmptyAtFirst()
     {
@@ -80,6 +79,18 @@ namespace HairSalon
       Stylist foundStylist = Stylist.Find(testStylist.GetId());
       //Assert
       Assert.Equal(testStylist, foundStylist);
+    }
+    [Fact]
+    public void Test_Update_ReturnsTrueIfStylistInfoIsTheSame()
+    {
+      //Arrange
+      Stylist firstTestStylist = new Stylist("Harry Cutter", "a great stylist");
+      firstTestStylist.Save();
+      Stylist secondTestStylist = new Stylist("Dwayne Johnson", "a wonderful stylist", firstTestStylist.GetId());
+      //Act
+      secondTestStylist.Update("Harry Cutter", "a great stylist");
+      //Assert
+      Assert.Equal(firstTestStylist, secondTestStylist);
     }
 
     public void Dispose()

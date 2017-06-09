@@ -78,6 +78,44 @@ namespace HairSalon
       }
     }
 
+    public void Update(string newName, string newBio)
+    { //Update method for strings
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("UPDATE stylists SET name = @NewName, bio = @NewBio OUTPUT INSERTED.name, INSERTED.bio WHERE id = @StylistId;", conn);
+
+      SqlParameter newNameParameter = new SqlParameter();
+      newNameParameter.ParameterName = "@NewName";
+      newNameParameter.Value = newName;
+      cmd.Parameters.Add(newNameParameter);
+
+      SqlParameter newBioParameter = new SqlParameter();
+      newBioParameter.ParameterName = "@NewBio";
+      newBioParameter.Value = newBio;
+      cmd.Parameters.Add(newBioParameter);
+
+      SqlParameter stylistIdParameter = new SqlParameter();
+      stylistIdParameter.ParameterName = "@StylistId";
+      stylistIdParameter.Value = this.GetId();
+      cmd.Parameters.Add(stylistIdParameter);
+      SqlDataReader rdr = cmd.ExecuteReader();
+
+      while(rdr.Read())
+      {
+        this._name = rdr.GetString(0);
+        this._bio = rdr.GetString(1);
+      }
+      if (rdr != null)
+      {
+        rdr.Close();
+      }
+      if (conn != null)
+      {
+        conn.Close();
+      }
+    }
+
     public static List<Stylist> GetAll()
     {
       List<Stylist> allStylists = new List<Stylist>{};
