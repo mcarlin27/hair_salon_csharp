@@ -84,11 +84,27 @@ namespace HairSalon
     public void Test_Update_ReturnsTrueIfStylistInfoIsTheSame()
     {
       //Arrange
-      Stylist firstTestStylist = new Stylist("Harry Cutter", "a great stylist", 3);
+      Salon newSalon = new Salon("British Hairways", "a great salon");
+      newSalon.Save();
+      Stylist firstTestStylist = new Stylist("Harry Cutter", "a great stylist", newSalon.GetId());
       firstTestStylist.Save();
-      Stylist secondTestStylist = new Stylist("Dwayne Johnson", "a wonderful stylist", 2, firstTestStylist.GetId());
+      Stylist secondTestStylist = new Stylist("Dwayne Johnson", "a wonderful stylist", newSalon.GetId(), firstTestStylist.GetId());
       //Act
       secondTestStylist.Update("Harry Cutter", "a great stylist");
+      //Assert
+      Assert.Equal(firstTestStylist, secondTestStylist);
+    }
+    [Fact]
+    public void Test_Update_ReturnsTrueIfSalonIdsAreTheSame()
+    {
+      //Arrange
+      Salon newSalon = new Salon("British Hairways", "a great salon");
+      newSalon.Save();
+      Stylist firstTestStylist = new Stylist("Harry Cutter", "a great stylist", newSalon.GetId());
+      firstTestStylist.Save();
+      Stylist secondTestStylist = new Stylist("Harry Cutter", "a great stylist", 3, firstTestStylist.GetId());
+      //Act
+      secondTestStylist.Update(firstTestStylist.GetSalonId());
       //Assert
       Assert.Equal(firstTestStylist, secondTestStylist);
     }
@@ -131,6 +147,7 @@ namespace HairSalon
     {
       Stylist.DeleteAll();
       Client.DeleteAll();
+      Salon.DeleteAll();
     }
   }
 }
