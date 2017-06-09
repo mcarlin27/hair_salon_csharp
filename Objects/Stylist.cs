@@ -9,12 +9,14 @@ namespace HairSalon
     private int _id;
     private string _name;
     private string _bio;
+    private int _salonId;
 
-    public Stylist(string Name, string Bio, int Id = 0)
+    public Stylist(string Name, string Bio, int SalonId, int Id = 0)
     {
       _id = Id;
       _name = Name;
       _bio = Bio;
+      _salonId = SalonId;
     }
     public int GetId()
     {
@@ -27,6 +29,10 @@ namespace HairSalon
     public string GetBio()
     {
       return _bio;
+    }
+    public int GetSalonId()
+    {
+      return _salonId;
     }
 
     public override bool Equals(System.Object otherStylist)
@@ -41,7 +47,8 @@ namespace HairSalon
         bool idEquality = this.GetId() == newStylist.GetId();
         bool nameEquality = this.GetName() == newStylist.GetName();
         bool bioEquality = this.GetBio() == newStylist.GetBio();
-        return (idEquality && nameEquality && bioEquality);
+        bool salonIdEquality = this.GetSalonId() == newStylist.GetSalonId();
+        return (idEquality && nameEquality && bioEquality && salonIdEquality);
       }
     }
 
@@ -50,7 +57,7 @@ namespace HairSalon
       SqlConnection conn = DB.Connection();
       conn.Open();
 
-      SqlCommand cmd = new SqlCommand("INSERT INTO stylists (name, bio) OUTPUT INSERTED.id VALUES (@StylistName, @StylistBio);", conn);
+      SqlCommand cmd = new SqlCommand("INSERT INTO stylists (name, bio, salon_id) OUTPUT INSERTED.id VALUES (@StylistName, @StylistBio, @SalonId);", conn);
 
       SqlParameter nameParameter = new SqlParameter();
       nameParameter.ParameterName = "@StylistName";
@@ -60,8 +67,13 @@ namespace HairSalon
       bioParameter.ParameterName = "@StylistBio";
       bioParameter.Value = this.GetBio();
 
+      SqlParameter salonIdParameter = new SqlParameter();
+      salonIdParameter.ParameterName = "@SalonId";
+      salonIdParameter.Value = this.GetSalonId();
+
       cmd.Parameters.Add(nameParameter);
       cmd.Parameters.Add(bioParameter);
+      cmd.Parameters.Add(salonIdParameter);
 
       SqlDataReader rdr = cmd.ExecuteReader();
 
@@ -117,6 +129,38 @@ namespace HairSalon
       }
     }
 
+    public void Update(int newSalonId)
+    { //Update method for integers
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("UPDATE stylists SET salon_id = @NewSalonId OUTPUT INSERTED.salon_id WHERE id = @StylistId;", conn);
+
+      SqlParameter newSalonIdParameter = new SqlParameter();
+      newSalonIdParameter.ParameterName = "@NewSalonId";
+      newSalonIdParameter.Value = newSalonId;
+      cmd.Parameters.Add(newSalonIdParameter);
+
+      SqlParameter stylistIdParameter = new SqlParameter();
+      stylistIdParameter.ParameterName = "@StylistId";
+      stylistIdParameter.Value = this.GetId();
+      cmd.Parameters.Add(stylistIdParameter);
+      SqlDataReader rdr = cmd.ExecuteReader();
+
+      while(rdr.Read())
+      {
+        this._stylistId = rdr.GetInt32(0);
+      }
+      if (rdr != null)
+      {
+        rdr.Close();
+      }
+      if (conn != null)
+      {
+        conn.Close();
+      }
+    }
+
     public static List<Stylist> GetAll()
     {
       List<Stylist> allStylists = new List<Stylist>{};
@@ -132,7 +176,8 @@ namespace HairSalon
         int stylistId = rdr.GetInt32(0);
         string stylistName = rdr.GetString(1);
         string stylistBio = rdr.GetString(2);
-        Stylist newStylist = new Stylist(stylistName, stylistBio, stylistId);
+        int stylistSalonId = rdr.GetInt32(3);
+        Stylist newStylist = new Stylist(stylistName, stylistBio, stylistsalonId, stylistId);
         allStylists.Add(newStylist);
       }
       if (rdr != null)
@@ -161,13 +206,15 @@ namespace HairSalon
       int foundStylistId = 0;
       string foundStylistName = null;
       string foundStylistBio = null;
+      int foundStylistSalonId = 0;
       while(rdr.Read())
       {
         foundStylistId = rdr.GetInt32(0);
         foundStylistName = rdr.GetString(1);
         foundStylistBio = rdr.GetString(2);
+        foundStylistSalonId = rdr.GetInt32(3);
       }
-      Stylist foundStylist = new Stylist(foundStylistName, foundStylistBio, foundStylistId);
+      Stylist foundStylist = new Stylist(foundStylistName, foundStylistBio, foundStylistSalonId, foundStylistId);
 
       if (rdr != null)
       {
