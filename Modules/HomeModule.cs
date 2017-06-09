@@ -157,6 +157,23 @@ namespace HairSalon
         return View["client.cshtml", model];
       }; //retrieves individual client pages
 
+      Get["/client/{id}/edit"] = parameters => {
+        Dictionary<string, object> model = new Dictionary<string, object>{};
+        Client SelectedClient = Client.Find(parameters.id);
+        string clientEdit = Request.Query["client-edit"];
+        model.Add("form-type", clientEdit);
+        model.Add("client", SelectedClient);
+        return View["edit.cshtml", model];
+      }; //edit individual client
+
+      Patch["/client/{id}/edit"] = parameters => {
+        Dictionary<string, object> model = new Dictionary<string, object>();
+        Client SelectedClient = Client.Find(parameters.id);
+        SelectedClient.Update(Request.Form["client-name"]);
+        model.Add("client", SelectedClient);
+        return View["client.cshtml", model];
+      }; //returns edited client page
+
 
     }
   }
