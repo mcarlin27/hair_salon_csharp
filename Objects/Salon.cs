@@ -180,6 +180,40 @@ namespace HairSalon
       return foundSalon;
     }
 
+    public List<Client> GetStylists()
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("SELECT * FROM stylists WHERE salon_id = @SalonId;", conn);
+
+      SqlParameter salonIdParameter = new SqlParameter();
+      salonIdParameter.ParameterName = "@SalonId";
+      salonIdParameter.Value = this.GetId();
+      cmd.Parameters.Add(salonIdParameter);
+      SqlDataReader rdr = cmd.ExecuteReader();
+
+      List<Stylist> stylists = new List<Stylist> {};
+      while(rdr.Read())
+      {
+        int stylistId = rdr.GetInt32(0);
+        string stylistName = rdr.GetString(1);
+        string stylistBio = rdr.GetString(2);
+        int stylistSalonId = rdr.GetInt32(3);
+        Stylist newStylist = new Stylist(stylistName, stylistBio, stylistSalonId, stylistId);
+        stylists.Add(newStylist);
+      }
+      if (rdr != null)
+      {
+        rdr.Close();
+      }
+      if (conn != null)
+      {
+        conn.Close();
+      }
+      return stylists;
+    }
+
     public void Delete()
     {
       SqlConnection conn = DB.Connection();
