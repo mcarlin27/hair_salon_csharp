@@ -15,7 +15,6 @@ A website created with C# and HTML where a ...
 | **WISH LIST: Save multiple salons to database** | "British Hairways" "The Second Combing" | "British Hairways", "The Second Combing" | Database should save multiple instances of an object. |
 | **WISH LIST: User can query list of salons** | "Query: All Salons" | "British Hairways, The Second Combing" | Uses a GetAll() method to query database. |
 | **WISH LIST: User can view a specific salon** | "British Hairways" | "/salons/{id}" | Uses Find() method to identify individual salon by id and return full database info for salon. |
-
 | **Save one stylist to database** | "Harry Cutter" | "Harry Cutter" | Simplest possible input for Stylist object. |
 | **WISH LIST: Links Stylist to specific Salon** | "Harry Cutter, British Hairways" | "British Hairways: Harry Cutter" | Creates one-to-many relationship between salons and stylists; stylists are inputted with SalonId. |
 | **Save multiple stylists to database** | "Harry Cutter" "Dwayne Johnson" | "Harry Cutter", "Dwayne Johnson" | Database should save multiple instances of an object. |
