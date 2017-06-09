@@ -213,7 +213,6 @@ namespace HairSalon
       return clients;
     }
 
-
     public void Delete()
     {
       SqlConnection conn = DB.Connection();

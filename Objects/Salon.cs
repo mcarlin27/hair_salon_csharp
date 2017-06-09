@@ -180,6 +180,26 @@ namespace HairSalon
       return foundSalon;
     }
 
+    public void Delete()
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("DELETE FROM salons WHERE id = @SalonId;", conn);
+
+      SqlParameter salonIdParameter = new SqlParameter();
+      salonIdParameter.ParameterName = "@SalonId";
+      salonIdParameter.Value = this.GetId();
+
+      cmd.Parameters.Add(salonIdParameter);
+      cmd.ExecuteNonQuery();
+
+      if (conn != null)
+      {
+        conn.Close();
+      }
+    }
+
     public static void DeleteAll()
     {
       SqlConnection conn = DB.Connection();
