@@ -45,6 +45,40 @@ namespace HairSalon
       }
     }
 
+    public void Save()
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("INSERT INTO salons (name, about) OUTPUT INSERTED.id VALUES (@SalonName, @SalonAbout);", conn);
+
+      SqlParameter nameParameter = new SqlParameter();
+      nameParameter.ParameterName = "@SalonName";
+      nameParameter.Value = this.GetName();
+
+      SqlParameter aboutParameter = new SqlParameter();
+      aboutParameter.ParameterName = "@SalonAbout";
+      aboutParameter.Value = this.GetAbout();
+
+      cmd.Parameters.Add(nameParameter);
+      cmd.Parameters.Add(aboutParameter);
+
+      SqlDataReader rdr = cmd.ExecuteReader();
+
+      while(rdr.Read())
+      {
+        this._id = rdr.GetInt32(0);
+      }
+      if (rdr != null)
+      {
+        rdr.Close();
+      }
+      if (conn != null)
+      {
+        conn.Close();
+      }
+    }
+
     public static List<Salon> GetAll()
     {
       List<Salon> allSalons = new List<Salon>{};
