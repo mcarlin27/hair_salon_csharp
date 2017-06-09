@@ -92,6 +92,23 @@ namespace HairSalon
       //Assert
       Assert.Equal(firstTestStylist, secondTestStylist);
     }
+    [Fact]
+    public void Test_Delete_ReturnsTrueIfListsAreTheSame()
+    {
+      //Arrange
+      Stylist firstTestStylist = new Stylist("Harry Cutter", "a great stylist");
+      firstTestStylist.Save();
+      Stylist secondTestStylist = new Stylist("Dwayne Johnson", "a wonderful stylist");
+      secondTestStylist.Save();
+      Stylist thirdTestStylist = new Stylist("Jsaon Statham", "a marvelous stylist");
+      thirdTestStylist.Save();
+      List<Stylist> expectedList = new List<Stylist>{firstTestStylist, secondTestStylist};
+      //Act
+      thirdTestStylist.Delete();
+      List<Stylist> resultList = Stylist.GetAll();
+      //Assert
+      Assert.Equal(resultList, expectedList);
+    }
 
     public void Dispose()
     {
