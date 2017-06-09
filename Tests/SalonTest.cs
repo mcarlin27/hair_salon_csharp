@@ -42,6 +42,20 @@ namespace HairSalon
       //Assert
       Assert.Equal(result, expectedResult);
     }
+    [Fact]
+    public void Test_Save_SavesMultipleSalonsToDatabase()
+    {
+      //Arrange
+      Salon firstTestSalon = new Salon("British Hairways", "a great salon");
+      firstTestSalon.Save();
+      Salon secondTestSalon = new Salon("The Second Combing", "a wonderful stylist");
+      secondTestSalon.Save();
+      //Act
+      List<Salon> result = Salon.GetAll();
+      List<Salon> expectedResult = new List<Salon>{firstTestSalon, secondTestSalon};
+      //Assert
+      Assert.Equal(result, expectedResult);
+    }
     public void Dispose()
     {
       Salon.DeleteAll();
