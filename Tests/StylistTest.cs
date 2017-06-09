@@ -25,8 +25,8 @@ namespace HairSalon
     public void Test_Equal_ReturnsTrueForSameInfo()
     {
       //Arrange, Act
-      Stylist firstStylist = new Stylist("Harry Cutter", "a great stylist");
-      Stylist secondStylist = new Stylist("Harry Cutter", "a great stylist");
+      Stylist firstStylist = new Stylist("Harry Cutter", "a great stylist", 3);
+      Stylist secondStylist = new Stylist("Harry Cutter", "a great stylist", 3);
       //Assert
       Assert.Equal(firstStylist, secondStylist);
     }
@@ -34,7 +34,7 @@ namespace HairSalon
     public void Test_Save_SavesStylistToDatabase()
     {
       //Arrange
-      Stylist testStylist = new Stylist("Harry Cutter", "a great stylist");
+      Stylist testStylist = new Stylist("Harry Cutter", "a great stylist", 3);
       testStylist.Save();
       //Act
       List<Stylist> result = Stylist.GetAll();
@@ -46,9 +46,9 @@ namespace HairSalon
     public void Test_Save_SavesMultipleStylistsToDatabase()
     {
       //Arrange
-      Stylist firstTestStylist = new Stylist("Harry Cutter", "a great stylist");
+      Stylist firstTestStylist = new Stylist("Harry Cutter", "a great stylist", 3);
       firstTestStylist.Save();
-      Stylist secondTestStylist = new Stylist("Dwayne Johnson", "a wonderful stylist");
+      Stylist secondTestStylist = new Stylist("Dwayne Johnson", "a wonderful stylist", 2);
       secondTestStylist.Save();
       //Act
       List<Stylist> result = Stylist.GetAll();
@@ -60,7 +60,7 @@ namespace HairSalon
     public void Test_Save_AssignsIdToStylistInDatabase()
     {
       //Arrange
-      Stylist testStylist = new Stylist("Harry Cutter", "a great stylist");
+      Stylist testStylist = new Stylist("Harry Cutter", "a great stylist", 3);
       testStylist.Save();
       //Act
       Stylist savedStylist = Stylist.GetAll()[0];
@@ -73,7 +73,7 @@ namespace HairSalon
     public void Test_Find_FindsStylistInDatabase()
     {
       //Arrange
-      Stylist testStylist = new Stylist("Harry Cutter", "a great stylist");
+      Stylist testStylist = new Stylist("Harry Cutter", "a great stylist", 3);
       testStylist.Save();
       //Act
       Stylist foundStylist = Stylist.Find(testStylist.GetId());
@@ -84,9 +84,9 @@ namespace HairSalon
     public void Test_Update_ReturnsTrueIfStylistInfoIsTheSame()
     {
       //Arrange
-      Stylist firstTestStylist = new Stylist("Harry Cutter", "a great stylist");
+      Stylist firstTestStylist = new Stylist("Harry Cutter", "a great stylist", 3);
       firstTestStylist.Save();
-      Stylist secondTestStylist = new Stylist("Dwayne Johnson", "a wonderful stylist", firstTestStylist.GetId());
+      Stylist secondTestStylist = new Stylist("Dwayne Johnson", "a wonderful stylist", 2, firstTestStylist.GetId());
       //Act
       secondTestStylist.Update("Harry Cutter", "a great stylist");
       //Assert
@@ -96,11 +96,11 @@ namespace HairSalon
     public void Test_Delete_ReturnsTrueIfListsAreTheSame()
     {
       //Arrange
-      Stylist firstTestStylist = new Stylist("Harry Cutter", "a great stylist");
+      Stylist firstTestStylist = new Stylist("Harry Cutter", "a great stylist" ,3);
       firstTestStylist.Save();
-      Stylist secondTestStylist = new Stylist("Dwayne Johnson", "a wonderful stylist");
+      Stylist secondTestStylist = new Stylist("Dwayne Johnson", "a wonderful stylist", 2);
       secondTestStylist.Save();
-      Stylist thirdTestStylist = new Stylist("Jason Statham", "a marvelous stylist");
+      Stylist thirdTestStylist = new Stylist("Jason Statham", "a marvelous stylist", 1);
       thirdTestStylist.Save();
       List<Stylist> expectedList = new List<Stylist>{firstTestStylist, secondTestStylist};
       //Act
@@ -113,7 +113,7 @@ namespace HairSalon
     public void Test_GetClients_ReturnsTrueIfListsAreTheSame()
     {
       //Arrange
-      Stylist newStylist = new Stylist("Harry Cutter", "a great stylist");
+      Stylist newStylist = new Stylist("Harry Cutter", "a great stylist", 3);
       newStylist.Save();
       Client firstTestClient = new Client("Vin Diesel", newStylist.GetId());
       firstTestClient.Save();
