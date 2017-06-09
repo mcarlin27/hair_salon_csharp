@@ -29,6 +29,22 @@ namespace HairSalon
       return _about;
     }
 
+    public override bool Equals(System.Object otherSalon)
+    {
+      if (!(otherSalon is Salon))
+      {
+        return false;
+      }
+      else
+      {
+        Salon newSalon = (Salon) otherSalon;
+        bool idEquality = this.GetId() == newSalon.GetId();
+        bool nameEquality = this.GetName() == newSalon.GetName();
+        bool aboutEquality = this.GetAbout() == newSalon.GetAbout();
+        return (idEquality && nameEquality && aboutEquality);
+      }
+    }
+
     public static List<Salon> GetAll()
     {
       List<Salon> allSalons = new List<Salon>{};

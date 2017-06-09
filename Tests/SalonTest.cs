@@ -21,6 +21,15 @@ namespace HairSalon
       //Assert
       Assert.Equal(0, result);
     }
+    [Fact]
+    public void Test_Equal_ReturnsTrueForSameInfo()
+    {
+      //Arrange, Act
+      Salon firstSalon = new Salon("British Hairways", "a great salon");
+      Salon secondSalon = new Salon("British Hairways", "a great salon");
+      //Assert
+      Assert.Equal(firstSalon, secondSalon);
+    }
     public void Dispose()
     {
       Salon.DeleteAll();
