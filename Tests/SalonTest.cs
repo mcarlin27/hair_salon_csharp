@@ -56,6 +56,19 @@ namespace HairSalon
       //Assert
       Assert.Equal(result, expectedResult);
     }
+    [Fact]
+    public void Test_Save_AssignsIdToSalonInDatabase()
+    {
+      //Arrange
+      Salon testSalon = new Salon("British Hairways", "a great salon");
+      testSalon.Save();
+      //Act
+      Salon savedSalon = Salon.GetAll()[0];
+      int testId = testSalon.GetId();
+      int expectedId = savedSalon.GetId();
+      //Assert
+      Assert.Equal(testId, expectedId);
+    }
     public void Dispose()
     {
       Salon.DeleteAll();
