@@ -174,6 +174,23 @@ namespace HairSalon
         return View["client.cshtml", model];
       }; //returns edited client page
 
+      Get["client/{id}/delete"] = parameters => {
+        Dictionary<string, object> model = new Dictionary<string, object>{};
+        Client SelectedClient = Client.Find(parameters.id);
+        string clientDelete = Request.Query["client-delete"];
+        model.Add("form-type", clientDelete);
+        model.Add("client", SelectedClient);
+        return View["delete.cshtml", model];
+      }; //delete individual client
+
+      Delete["client/{id}/delete"] = parameters => {
+        Client SelectedClient = Client.Find(parameters.id);
+        SelectedClient.Delete();
+        List<Client> allClients = Client.GetAll();
+        return View["clients.cshtml", allClients];
+      }; //returns confirmation of deleted client
+
+
 
     }
   }
