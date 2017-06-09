@@ -28,7 +28,7 @@ namespace HairSalon
         bool idEquality = this.GetId() == newStylist.GetId();
         bool nameEquality = this.GetName() == newStylist.GetName();
         bool bioEquality = this.GetBio() == newStylist.GetBio();
-        return (idEquality && nameEquality ** bioEquality);
+        return (idEquality && nameEquality && bioEquality);
       }
     }
     public int GetId()
