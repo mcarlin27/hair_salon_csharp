@@ -14,16 +14,16 @@ A website created with C# and HTML where a ...
 | **WISH LIST: Save one hair salon to database** | "British Hairways" | "British Hairways" | Simplest possible input for Salon object. |
 | **WISH LIST: Save multiple salons to database** | "British Hairways" "The Second Combing" | "British Hairways", "The Second Combing" | Database should save multiple instances of an object. |
 | **WISH LIST: User can query list of salons** | "Query: All Salons" | "British Hairways, The Second Combing" | Uses a GetAll() method to query database. |
-| **WISH LIST: User can view a specific salon** | "British Hairways" | "/salons/{id}" | Uses Find() method to identify individual salon by id and return full database info for salon. |
+| **WISH LIST: User can view a specific salon** | "British Hairways" "/salons/{id}" | "British Hairways" | Uses Find() method to identify individual salon by id and return full database info for salon. |
 | **Save one stylist to database** | "Harry Cutter" | "Harry Cutter" | Simplest possible input for Stylist object. |
 | **WISH LIST: Links Stylist to specific Salon** | "Harry Cutter, British Hairways" | "British Hairways: Harry Cutter" | Creates one-to-many relationship between salons and stylists; stylists are inputted with SalonId. |
 | **Save multiple stylists to database** | "Harry Cutter" "Dwayne Johnson" | "Harry Cutter", "Dwayne Johnson" | Database should save multiple instances of an object. |
 | **User can query list of stylists** | "Query: All Stylists" | "Harry Cutter, Dwayne Johnson" | Uses a GetAll() method to query database. |
 | **WISH LIST: User can query list of stylists by salon** | "Query: All Stylists at The Second Combing" | "Harry Cutter, Bruce Willis" | Uses a GetStylists() method to query stylist database by SalonId. |
-| **User can view a specific stylist** | "Harry Cutter" | "/stylists/{id}" | Uses Find() method to identify individual stylists by id and return full database info for stylist. |
+| **User can view a specific stylist** | "Harry Cutter" "/stylists/{id}" | "Harry Cutter" | Uses Find() method to identify individual stylists by id and return full database info for stylist. |
 | **User can edit a specific stylist** | "Edit: Harry Cutter" "/stylists/{id}/edit" | "Harry Cutter" --> "Carry Hutter" | Uses Update() method to edit individual stylist's database entry; stylist identified by id. |
 | **User can delete a specific stylist** | "Delete: Harry Cutter" "/stylists/{id}/delete" | "Stylist Deleted!" | Uses Delete() method to delete individual stylist's database entry; stylist identified by id. |
-| **User can delete all stylists** | "Delete: All Stylists" "/stylists/delete_all" |  | Uses DeleteAll() method to delete all stylists from database. |
+| **User can delete all stylists** | "Delete: All Stylists" "/stylists/delete_all" | "All Stylists Deleted!" | Uses DeleteAll() method to delete all stylists from database. |
 | **Save one client to database** | "Vin Diesel" | "Vin Diesel" | Simplest possible input for Client object. |
 | **Links Client to specific Stylist** | "Vin Diesel, Harry Cutter" | "Harry Cutter: Vin Diesel" | Creates one-to-many relationship between stylist and clients; clients are inputted with StylistId. |
 | **Save multiple clients to database** | "Vin Diesel" "Lady Gaga" | "Vin Diesel", "Lady Gaga" | Database should save multiple instances of an object. |
@@ -32,24 +32,7 @@ A website created with C# and HTML where a ...
 | **User can view a specific client** | "Vin Diesel" "/clients/{id}" | "Vin Diesel" | Uses Find() method to identify individual clients by id and return full database info for client. |
 | **User can edit a specific client** | "Edit: Vin Diesel" "/clients/{id}/edit" | "Vin Diesel" --> "Din Viesel" | Uses Update() method to edit individual client's database entry; client identified by id. |
 | **User can delete a specific client** | "Delete: Vin Diesel" "/clients/{id}/delete" | "Client Deleted!" | Uses Delete() method to delete individual client's database entry; client identified by id. |
-| **User can delete all clients** | "Delete: All Clients" "/clients/delete_all" |  | Uses DeleteAll() method to delete all clients from database. |
-
-
-### Specs
-| Spec | Input | Output |
-| :-------------     | :------------- | :------------- |
-| **User can add one stylist to database** | add Japanese | Japanese |
-| **User can view all cuisine types** | View All Cuisines  | Japanese, Tex-Mex, Modern American, Tapas |
-| **User can update existing cuisine types**| Edit Tex-Mex | Mexican |
-| **User can delete all cuisine types**| Delete All Cuisine Types | List Cleared! |
-| **User can delete individual cuisines** | Delete: Japanese | "Japanese cuisine has been deleted!" |
-| **User can add restaurant to DB** | add Saburo's | Saburo's |
-| **User can add cuisine type to restaurant** | Saburo's | Saburo's: Sushi |
-| **User can view all restaurants** | View All Restaurants  | Saburo's, Jam, Tom Yum |
-| **User can update existing restaurant**| Edit Tani's | Shoko's Sushi |
-| **User can delete all restaurants**| Delete All Restaurants | List Cleared! |
-| **User can delete individual restaurants** | Delete: Shoko's | "Shoko's has been deleted!" |
-| **User can query restaurants by cuisine** | View All: Sushi | Shoko's, Saburo's |
+| **User can delete all clients** | "Delete: All Clients" "/clients/delete_all" | "All Clients Deleted!" | Uses DeleteAll() method to delete all clients from database. |
 
 ## Setup/Installation Requirements
 
