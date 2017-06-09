@@ -5,19 +5,24 @@
 <div class="container">
   <h1>List of Salons</h1>
   <hr />
-  <h2>Salons:</h2>
-  <ul>
-    @if (Model.Count != 0)
+  @if (Model.Count == 0)
+  {
+    <p>No salons have been added yet!</p>
+  }
+  else
+  {
+    @foreach (var salon in Model)
     {
-      @foreach (var salon in Model)
-      {
-      <li><a href="/salons/@salon.GetId()">@salon.GetName()</a></li>
-      }
+      <ul>
+        <li><a href="/salons/@salon.GetId()">@salon.GetName()</a></li>
+      </ul>
     }
-  </ul>
-  <h4><a href="/salons/new">Add a new salon</a></h4>
-  <h4><a href="/">Return home</a></h4>
+  }
 
+  <form action='/salons/new' method="get">
+      <input type="hidden" name="add-salon" id="add-salon" value="add-salon"><button type="submit">Add a new Salon</button>
+  </form>
+  <h4><a href="/">Return home</a></h4>
   <form action="/salons/delete" method="post">
     <button type="submit">Delete All Salons</button>
   </form>

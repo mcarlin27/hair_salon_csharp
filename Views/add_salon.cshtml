@@ -1,0 +1,14 @@
+@{
+  Layout="Shared/_Layout";
+}
+
+<div class="container">
+  <h1>Add a New Salon</h1>
+  <form action="/salons/new" method="post">
+    <label for="salon-name">Salon name</label>
+    <input id="salon-name" name="salon-name" type="text">
+    <label for="salon-bio">Salon bio</label>
+    <input id="salon-bio" name="salon-bio" type="text">
+    <button type="submit">Add</button>
+  </form>
+</div>
