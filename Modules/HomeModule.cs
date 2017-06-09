@@ -44,7 +44,7 @@ namespace HairSalon
       }; //navigates to form to add new stylist
 
       Post["/stylists/new"] = _ => {
-        Stylist newStylist = new Stylist(Request.Form["stylist-name"], Request.Form["stylist-about"], Request.Form["salon-id"]);
+        Stylist newStylist = new Stylist(Request.Form["stylist-name"], Request.Form["stylist-bio"], Request.Form["salon-id"]);
         newStylist.Save();
         List<Stylist> allStylists = Stylist.GetAll();
         return View["stylists.cshtml", allStylists];
@@ -105,6 +105,15 @@ namespace HairSalon
         List<Salon> allSalons = Salon.GetAll();
         return View["salons.cshtml", allSalons];
       }; //returns confirmation of deleted salon
+
+      Get["/stylists/{id}"] = parameters => {
+        Stylist SelectedStylist = Stylist.Find(parameters.id);
+        List<Client> stylistClients = SelectedStylist.GetClients();
+        Dictionary<string, object> model = new Dictionary<string, object>();
+        model.Add("stylist", SelectedStylist);
+        model.Add("clients", stylistClients);
+        return View["stylist.cshtml", model];
+      }; //retrieves individual stylist pages
 
 
     }

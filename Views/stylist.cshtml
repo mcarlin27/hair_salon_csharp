@@ -1,0 +1,32 @@
+@{
+  Layout="Shared/_Layout";
+}
+
+<div class="container">
+  <h1>@Model["stylist"].GetName()</h1>
+  <h3>@Model["stylist"].GetBio()</h3>
+  <h3>Here are all the clients for this stylist:</h3>
+
+  @if (@Model["clients"].Count == 0)
+  {
+    <p>No clients have been added yet!</p>
+  }
+  else
+  {
+    <ol>
+      @foreach (var client in @Model["clients"])
+      {
+        <li><a href="/clients/@client.GetId()">@client.GetName()</li>
+      }
+    </ol>
+  }
+
+  <form action='/stylist/@Model["stylist"].GetId()/edit' method="get">
+      <input type="hidden" name="stylist-edit" id="stylist-edit" value="stylist-edit"><button type="submit">Edit this Stylist</button>
+  </form>
+  <form action='/stylist/@Model["stylist"].GetId()/delete' method="get">
+      <input type="hidden" name="stylist-delete" id="stylist-delete" value="stylist-delete"><button type="submit">Delete this Stylist</button>
+  </form>
+  <p><a href="/clients/new">Add a new client</a></p>
+  <p><a href="/">Return Home</a></p>
+</div>
