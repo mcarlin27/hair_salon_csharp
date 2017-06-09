@@ -100,7 +100,7 @@ namespace HairSalon
       firstTestStylist.Save();
       Stylist secondTestStylist = new Stylist("Dwayne Johnson", "a wonderful stylist");
       secondTestStylist.Save();
-      Stylist thirdTestStylist = new Stylist("Jsaon Statham", "a marvelous stylist");
+      Stylist thirdTestStylist = new Stylist("Jason Statham", "a marvelous stylist");
       thirdTestStylist.Save();
       List<Stylist> expectedList = new List<Stylist>{firstTestStylist, secondTestStylist};
       //Act
