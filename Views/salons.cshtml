@@ -1,0 +1,24 @@
+@{
+  Layout="Shared/_Layout";
+}
+
+<div class="container">
+  <h1>List of Salons</h1>
+  <hr />
+  <h2>Salons:</h2>
+  <ul>
+    @if (Model.Count != 0)
+    {
+      @foreach (var salon in Model)
+      {
+      <li><a href="/salons/@salon.GetId()">@salon.GetName()</a></li>
+      }
+    }
+  </ul>
+  <h4><a href="/salons/new">Add a new salon</a></h4>
+  <h4><a href="/">Return home</a></h4>
+
+  <form action="/salons/delete" method="post">
+    <button type="submit">Delete All Salons</button>
+  </form>
+</div>
