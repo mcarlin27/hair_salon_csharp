@@ -1,0 +1,58 @@
+@{
+  Layout="Shared/_Layout";
+}
+
+@if(Model["form-type"] == "salon-edit")
+{
+  <div class="container">
+    <h1>Edit Salon</h1>
+    <hr />
+    <h3>@Model["salon"].GetName()</h3>
+    <form action='/salon/edit/@Model["salon"].GetId()' method="post">
+      <input type="hidden" name="_method" value="PATCH">
+      <input name="salon-id" type="hidden" value='@Model["salon"].GetId()'>
+      <label for="salon-name">Salon Name</label>
+      <input id="salon-name" name="salon-name" type="text" value='@Model["salon"].GetName()'>
+      <label for="salon-about">About Salon</label>
+      <input id="salon-about" name="salon-about" type="text" value='@Model["salon"].GetAbout()'>
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+}
+
+@if(Model["form-type"] == "stylist-edit")
+{
+  <div class="container">
+    <h1>Edit Stylist</h1>
+    <hr />
+    <h2>@Model["stylist"].GetName()</h2>
+    <form action='/stylist/edit/@Model["stylist"].GetId()' method="post">
+      <input type="hidden" name="_method" value="PATCH">
+      <input name="stylist-id" type="hidden" value='@Model["stylist"].GetId()'>
+
+      <label for="stylist-name">Stylist Name</label>
+      <input id="stylist-name" name="stylist-name" type="text" value='@Model["stylist"].GetName()'>
+
+      <label for="stylist-bio">Stylist Bio</label>
+      <input id="stylist-bio" name="stylist-bio" type="text" value='@Model["stylist"].GetBio()'>
+
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+}
+
+@if(Model["form-type"] == "client-edit")
+{
+  <div class="container">
+    <h1>Edit Client</h1>
+    <hr />
+    <h2>@Model["client"].GetName()</h2>
+    <form action='/client/edit/@Model["client"].GetId()' method="post">
+      <input type="hidden" name="_method" value="PATCH">
+      <input name="client-id" type="hidden" value='@Model["client"].GetId()'>
+      <label for="client-name">Client Name</label>
+      <input id="client-name" name="client-name" type="text" value='@Model["client"].GetName()'>
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+}

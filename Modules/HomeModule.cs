@@ -32,7 +32,7 @@ namespace HairSalon
       }; //navigates to form to add new salon
 
       Post["/salons/new"] = _ => {
-        Salon newSalon = new Salon(Request.Form["salon-name"], Request.Form["salon-bio"]);
+        Salon newSalon = new Salon(Request.Form["salon-name"], Request.Form["salon-about"]);
         newSalon.Save();
         List<Salon> allSalons = Salon.GetAll();
         return View["salons.cshtml", allSalons];
@@ -44,7 +44,7 @@ namespace HairSalon
       }; //navigates to form to add new stylist
 
       Post["/stylists/new"] = _ => {
-        Stylist newStylist = new Stylist(Request.Form["stylist-name"], Request.Form["stylist-bio"], Request.Form["salon-id"]);
+        Stylist newStylist = new Stylist(Request.Form["stylist-name"], Request.Form["stylist-about"], Request.Form["salon-id"]);
         newStylist.Save();
         List<Stylist> allStylists = Stylist.GetAll();
         return View["stylists.cshtml", allStylists];
@@ -70,6 +70,25 @@ namespace HairSalon
         model.Add("stylists", SalonStylists);
         return View["salon.cshtml", model];
       }; //retrieves individual salon pages
+
+      Get["/salon/edit/{id}"] = parameters => {
+        Dictionary<string, object> model = new Dictionary<string, object>{};
+        Salon SelectedSalon = Salon.Find(parameters.id);
+        string salonEdit = Request.Query["salon-edit"];
+        model.Add("form-type", salonEdit);
+        model.Add("salon", SelectedSalon);
+        return View["edit.cshtml", model];
+      }; //edit individual salon
+
+      Patch["/salon/edit/{id}"] = parameters => {
+        Dictionary<string, object> model = new Dictionary<string, object>();
+        Salon SelectedSalon = Salon.Find(parameters.id);
+        SelectedSalon.Update(Request.Form["salon-name"], Request.Form["salon-about"]);
+        List<Stylist> SalonStylists = SelectedSalon.GetStylists();
+        model.Add("salon", SelectedSalon);
+        model.Add("stylists", SalonStylists);
+        return View["salon.cshtml", model];
+      }; //returns edited salon page
 
 
     }

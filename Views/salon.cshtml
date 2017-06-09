@@ -4,6 +4,7 @@
 
 <div class="container">
   <h1>@Model["salon"].GetName()</h1>
+  <h3>@Model["salon"].GetAbout()</h3>
   <h3>Here are all the stylists at this salon:</h3>
 
   @if (@Model["stylists"].Count == 0)
