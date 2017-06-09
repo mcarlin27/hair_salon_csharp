@@ -149,7 +149,7 @@ namespace HairSalon
 
       while(rdr.Read())
       {
-        this._stylistId = rdr.GetInt32(0);
+        this._salonId = rdr.GetInt32(0);
       }
       if (rdr != null)
       {
@@ -177,7 +177,7 @@ namespace HairSalon
         string stylistName = rdr.GetString(1);
         string stylistBio = rdr.GetString(2);
         int stylistSalonId = rdr.GetInt32(3);
-        Stylist newStylist = new Stylist(stylistName, stylistBio, stylistsalonId, stylistId);
+        Stylist newStylist = new Stylist(stylistName, stylistBio, stylistSalonId, stylistId);
         allStylists.Add(newStylist);
       }
       if (rdr != null)

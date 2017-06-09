@@ -180,7 +180,7 @@ namespace HairSalon
       return foundSalon;
     }
 
-    public List<Client> GetStylists()
+    public List<Stylist> GetStylists()
     {
       SqlConnection conn = DB.Connection();
       conn.Open();

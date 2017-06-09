@@ -25,7 +25,7 @@ namespace HairSalon
     public void Test_Equal_ReturnsTrueForSameInfo()
     {
       //Arrange, Act
-      Stylist newStylist = new Stylist("Harry Cutter", "a great stylist");
+      Stylist newStylist = new Stylist("Harry Cutter", "a great stylist", 3);
       newStylist.Save();
       Client firstClient = new Client("Vin Diesel", newStylist.GetId());
       Client secondClient = new Client("Vin Diesel", newStylist.GetId());
@@ -98,7 +98,7 @@ namespace HairSalon
     public void Test_Update_ReturnsTrueIfStylistIdsAreTheSame()
     {
       //Arrange
-      Stylist newStylist = new Stylist("Harry Cutter", "a great stylist");
+      Stylist newStylist = new Stylist("Harry Cutter", "a great stylist", 3);
       newStylist.Save();
       Client firstTestClient = new Client("Vin Diesel", newStylist.GetId());
       firstTestClient.Save();
