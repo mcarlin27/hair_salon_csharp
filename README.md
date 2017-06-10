@@ -40,7 +40,7 @@ A website created with C# and HTML where a ...
 2. Install the [Nancy](http://nancyfx.org/) framework to use the view engine. Follow the link for installation instructions.
 3. Clone this repository.
 4. Open the command line--I use PowerShell.
-5. In SQLCMD: > CREATE DATABASE hair_salon; > GO > USE hair_salon; > GO > CREATE TABLE stylists (id INT IDENTITY(1,1), name VARCHAR(255), bio VARCHAR(255)); > CREATE TABLE clients (id INT IDENTITY(1,1), name VARCHAR(255)); > GO
+5. In SQLCMD: > CREATE DATABASE hair_salon; > GO > USE hair_salon; > GO > CREATE TABLE salons (id INT IDENTITY(1,1), name VARCHAR(255); > CREATE TABLE stylists (id INT IDENTITY(1,1), name VARCHAR(255), bio VARCHAR(255), salon_id INT;); > CREATE TABLE clients (id INT IDENTITY(1,1), name VARCHAR(255)); stylist_id INT; > GO
 6. Navigate into the repository. Use the command "dnx kestrel" to start the server.
 7. On your browser, navigate to "localhost:5004" and enjoy!
 
